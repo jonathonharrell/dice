@@ -3,8 +3,10 @@
 Example usage:
 
 ```
-var d Dice = "3d6"
+dice.SeedRandom()
+var d dice.Dice = "3d6"
 
-d.Roll() // 3-18
-d.RollWithModifier('+2') // 5-20
+fmt.Println(d.Roll())
+fmt.Println(d.RollWithModifier("+2"))
+
 ```
