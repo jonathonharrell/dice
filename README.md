@@ -1,4 +1,4 @@
-# Dice for Go
+# d20 Style Dice-Rolling for Go
 
 Example usage:
 
