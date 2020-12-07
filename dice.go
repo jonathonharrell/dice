@@ -23,11 +23,15 @@ func (dice *Dice) Parse() ParsedDice {
 	return ParsedDice{numDice, diceSize}
 }
 
-func (dice *Dice) Roll() int {
+func (dice *Dice) Roll() (roll int) {
 	parsed := dice.Parse()
-	min := parsed.NumDice
-	max := (parsed.NumDice * parsed.DiceSize) + 1
-	return dice.Random(min, max)
+	roll = 0
+	for i := 1; i <= parsed.NumDice; i++ {
+		min := 1
+		max := parsed.DiceSize + 1
+		roll += dice.Random(min, max)
+	}
+	return roll
 }
 
 func (dice *Dice) RollWithModifier(mod string) int {
@@ -41,4 +45,12 @@ func (dice *Dice) Random(min, max int) int {
 
 func SeedRandom() {
 	rand.Seed(time.Now().UTC().UnixNano())
+}
+
+func HistGen(data []int) map[int]int {
+	var histData = make(map[int]int)
+	for _, number := range data {
+		histData[number] = histData[number] + 1
+	}
+	return histData
 }
